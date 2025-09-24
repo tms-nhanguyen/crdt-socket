@@ -4,7 +4,7 @@ dotenv.config()
 import express from 'express'
 import expressWs from 'express-ws'
 // @ts-expect-error import directly from dist folder
-import { setupWSConnection } from 'y-websocket/bin/utils'
+import { setupWSConnection } from '@y/websocket-server/src/utils'
 
 const { app } = expressWs(express())
 const port = process.env.PORT || 3333
