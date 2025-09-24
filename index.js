@@ -12,13 +12,17 @@ const port = process.env.PORT || 3333
 app.use(express.json())
 
 app.get('/', (_, res) => {
-  res.json({ hello: 'world' })
+    setupWSConnection(ws, req, { docName: req.params.document })
+})
+
+app.ws('/', (ws, req) => {
+    setupWSConnection(ws, req, { docName: 'public' })
 })
 
 app.ws('/collaboration/:document', (ws, req) => {
-  setupWSConnection(ws, req, { docName: req.params.document })
+    setupWSConnection(ws, req, { docName: req.params.document })
 })
 
 app.listen(port, () => {
-  console.log(`express server started on ${port}`)
+    console.log(`express server started on ${port}`)
 })
