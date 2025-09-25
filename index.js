@@ -9,7 +9,6 @@ import { setupWSConnection } from '@y/websocket-server/utils'
 
 const wss = new WebSocketServer({ noServer: true })
 
-const host = process.env.HOST || 'localhost'
 const port = process.env.PORT || 1234
 
 const server = http.createServer((request, response) => {
@@ -31,6 +30,6 @@ server.on('upgrade', (request, socket, head) => {
   wss.handleUpgrade(request, socket, head, handleAuth)
 })
 
-server.listen(port, host, () => {
-  console.log(`running at '${host}' on port ${port}`)
+server.listen(port, () => {
+  console.log(`running on port ${port}`)
 })
