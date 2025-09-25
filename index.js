@@ -1,35 +1,47 @@
-#!/usr/bin/env node
+// #!/usr/bin/env node
 
-/**
- * @type {any}
- */
-// import { WebSocketServer } from "ws";
-import http from 'http'
-// import { setupWSConnection } from '@y/websocket-server/utils'
+// /**
+//  * @type {any}
+//  */
+// // import { WebSocketServer } from "ws";
+// import http from 'http'
+// // import { setupWSConnection } from '@y/websocket-server/utils'
 
-// const wss = new WebSocketServer({ noServer: true })
+// // const wss = new WebSocketServer({ noServer: true })
+
+// const port = process.env.PORT || 1234
+
+// const server = http.createServer((request, response) => {
+//   response.writeHead(200, { 'Content-Type': 'text/plain' })
+//   response.end('okay')
+// })
+
+// // wss.on('connection', setupWSConnection)
+
+// // server.on('upgrade', (request, socket, head) => {
+// //   // You may check auth of request here..
+// //   // See https://github.com/websockets/ws#client-authentication
+// //   /**
+// //    * @param {any} ws
+// //    */
+// //   const handleAuth = ws => {
+// //     wss.emit('connection', ws, request)
+// //   }
+// //   wss.handleUpgrade(request, socket, head, handleAuth)
+// // })
+
+// server.listen(port, () => {
+//   console.log(`running on port ${port}`)
+// })
+import express from 'express'
+const app = express()
 
 const port = process.env.PORT || 1234
 
-const server = http.createServer((request, response) => {
-  response.writeHead(200, { 'Content-Type': 'text/plain' })
-  response.end('okay')
+app.get('/', (req, res) => {
+  res.send('Hello World')
 })
 
-// wss.on('connection', setupWSConnection)
-
-// server.on('upgrade', (request, socket, head) => {
-//   // You may check auth of request here..
-//   // See https://github.com/websockets/ws#client-authentication
-//   /**
-//    * @param {any} ws
-//    */
-//   const handleAuth = ws => {
-//     wss.emit('connection', ws, request)
-//   }
-//   wss.handleUpgrade(request, socket, head, handleAuth)
-// })
-
-server.listen(port, () => {
-  console.log(`running on port ${port}`)
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`)
 })
